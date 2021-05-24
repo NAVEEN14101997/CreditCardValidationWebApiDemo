@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Interface;
+﻿using BusinessLayer;
+using BusinessLayer.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,29 +7,34 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+
 namespace CreditCardValidationWebApiDemo.Controllers
 {
     public class ValuesController : ApiController
     {
         private readonly IDecrypt _decrypt;
-        public ValuesController(IDecrypt decrypt)
+        private readonly IValidateCardDetails _validateCardDetails;
+        public ValuesController(IDecrypt decrypt, IValidateCardDetails validateCardDetails)
         {
             _decrypt = decrypt;
+            _validateCardDetails = validateCardDetails;
         }
-        // GET api/values
-      /*  public IEnumerable<string> Get()
+       
+
+        [HttpPost]
+        public IHttpActionResult ValidateCreditCardDetails(CreditCardDetails creditCardDetails)
         {
-            return new string[] { "value1", "value2" };
-        }*/
+            if (_validateCardDetails.Validate(creditCardDetails))
+            {
 
-        [HttpGet]
-        public IHttpActionResult Validate(string creditCardNumber)
-        {
-
-
-            return Ok("Validation Succeeded");
+                return Ok("Validation Succeeded");
+            }
+            else
+            {
+                return BadRequest("Validation Failed");
+            }
         }
-
+        /*
         // POST api/values
         public void Post([FromBody]string value)
         {
@@ -42,6 +48,6 @@ namespace CreditCardValidationWebApiDemo.Controllers
         // DELETE api/values/5
         public void Delete(int id)
         {
-        }
+        }*/
     }
 }

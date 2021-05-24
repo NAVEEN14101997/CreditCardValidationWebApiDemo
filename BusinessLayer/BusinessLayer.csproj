@@ -63,10 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="CreditCardDetails.cs" />
     <Compile Include="Implementation\Decrypt.cs" />
     <Compile Include="Implementation\Encrypt.cs" />
+    <Compile Include="Implementation\ValidateCardDetails.cs" />
     <Compile Include="Interface\IDecrypt.cs" />
     <Compile Include="Interface\IEncrypt.cs" />
+    <Compile Include="Interface\IValidateCardDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

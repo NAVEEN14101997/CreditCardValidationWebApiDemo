@@ -17,6 +17,7 @@ namespace CreditCardValidationWebApiDemo
             var container = new UnityContainer();
             container.RegisterType<IDecrypt, Decrypt>();
             container.RegisterType<IEncrypt, Encrypt>();
+            container.RegisterType<IValidateCardDetails, ValidateCardDetails>();
              //this
             config.DependencyResolver = new UnityDependencyResolver(container);
             config.MapHttpAttributeRoutes();
